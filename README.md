@@ -17,7 +17,8 @@ venv\Scripts\activate
 ```
 pip install -r requirements.txt
 ```
-6. Запустить тест:
+6. Добавить токен в файл 'settings.py' (уже находится там)
+7. Запустить тест:
 ```
 pytest test_yandex_disk.py
 ```
