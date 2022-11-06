@@ -26,6 +26,5 @@ class TestFolderCreation:
     def test_create_folder(self):
         response = self.login.create_folder(f"{self.NAME}")
         json = response.json()
-        print(self.NAME)
         assert response.status_code == 201, "Ошибка создания папки"
         assert "message" not in json, f"Тело ответа не соответствует требованию: {json.get('message')}"
