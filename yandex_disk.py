@@ -6,6 +6,19 @@ class YandexDisk:
     def __init__(self, API_TOKEN):
         self.token = API_TOKEN
 
+    '''Информация о Яндекс Диске json'''
+    def info(self, name):
+        URL = "https://cloud-api.yandex.net/v1/disk/resources"
+        headers = {
+            "Authorization": f"OAuth {self.token}", 
+            "Content-Type": "application/json", 
+            "Accept": "application/json",
+            }
+        params = {"path": f"{name}"}
+        response = requests.get(URL, headers=headers, params=params)
+        json = response.json()
+        return json
+
     '''Создание папки'''
     def create_folder(self, name):
         URL = "https://cloud-api.yandex.net/v1/disk/resources"
