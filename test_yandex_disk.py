@@ -1,4 +1,3 @@
-import pytest
 import random
 import string
 
@@ -18,13 +17,14 @@ class TestFolderCreation:
 
     def setup_method(self):
         self.login = YandexDisk(API_TOKEN)
-        self.login.delete_folder(f"{self.NAME}")
+        self.login.delete_folder(self.NAME)
 
     def teardown_method(self):
-         self.login.delete_folder(f"{self.NAME}")
+         self.login.delete_folder(self.NAME)
 
     def test_create_folder(self):
-        response = self.login.create_folder(f"{self.NAME}")
-        json = response.json()
+        response = self.login.create_folder(self.NAME)
+        path = self.login.info(self.NAME)["_embedded"]["path"]
+        print(path)
         assert response.status_code == 201, "Ошибка создания папки"
-        assert "message" not in json, f"Тело ответа не соответствует требованию: {json.get('message')}"
+        assert path == f"disk:/{self.NAME}", "Папка не была создана"
